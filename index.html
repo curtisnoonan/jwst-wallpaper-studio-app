@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>JWST Wallpaper Studio</title>
+<style>
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #0c0f14;
+  color: #f4f0e8;
+  font-family: system-ui, sans-serif;
+  line-height: 1.45;
+  box-shadow: inset 0 4px 0 #e2b15a;
+}
+.wrap {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 2.5rem;
+}
+header { margin: 0; }
+h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.lede { margin: 0.75rem 0 0; max-width: 40rem; color: #f4f0e8; }
+.today-status {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  background: #2a2114;
+  border: 1px solid #e2b15a;
+  border-radius: 0.5rem;
+  color: #ffe1a8;
+  font-weight: 600;
+}
+main { display: block; }
+section { margin-top: 1.75rem; min-width: 0; }
+@media (min-width: 960px) {
+  main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(18rem, 0.9fr);
+    column-gap: 1.25rem;
+    align-items: start;
+  }
+  #gallery { grid-column: 1; grid-row: 1; }
+  #pick { grid-column: 2; grid-row: 1; }
+  #rules, #delivery-log { grid-column: 1 / -1; }
+}
+.gallery-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.75rem, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0.55rem;
+  border: 1px solid #2c3340;
+  border-radius: 0.6rem;
+  background: #161b22;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.card.is-today {
+  border-color: #e2b15a;
+  background: #241c14;
+}
+.card[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 2px #b7ddd2;
+}
+.card:focus-visible {
+  outline: 2px solid #ffe1a8;
+  outline-offset: 3px;
+}
+.today-mark {
+  color: #ffe1a8;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.record-line {
+  color: #f4f0e8;
+  font-size: 0.92rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.surfaced-flag {
+  color: #d7fff4;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.card img, .stage-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+  border-radius: 0.35rem;
+}
+.card img { width: 100%; }
+.bound {
+  margin: 0 0 0.9rem;
+  padding: 0.75rem 0.9rem;
+  background: #241c12;
+  border-left: 3px solid #e2b15a;
+  color: #fff6e8;
+}
+#stage-empty { margin: 0; color: #f4f0e8; }
+.surfaced-label {
+  margin: 0 0 0.5rem;
+  color: #d7fff4;
+  font-weight: 700;
+}
+.stage-img { width: min(100%, 28rem); }
+#stage-caption { margin: 0.6rem 0 0; max-width: 28rem; }
+pre.record {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #10141a;
+  border: 1px solid #2c3340;
+  border-radius: 0.5rem;
+  color: #f4f0e8;
+  font-family: ui-monospace, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+footer {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #2c3340;
+  color: #f4f0e8;
+  font-size: 1rem;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>JWST Wallpaper Studio</h1>
+</header>
+<p class="lede">Delivered wallpapers from the daily-wallpaper cron. The rotation rules below are that cron's record, verbatim. Tap a wallpaper to surface it.</p>
+<p class="today-status" id="today-status" data-build-day="2026-11-09">A delivery is recorded for today, 2026-11-09.</p>
+<main>
+<section id="gallery" aria-labelledby="gallery-heading">
+<h2 id="gallery-heading">Gallery</h2>
+<ol class="gallery-grid">
+<li>
+<button type="button" class="card is-today" aria-current="date" data-date="2026-11-09" data-src="assets/wallpapers/wallpaper-2026-11-09.webp" data-record-line="2026-11-09 — Veil Nebula supernova remnant, JWST infrared" aria-pressed="false">
+<span class="today-mark">Today's delivery</span>
+<span class="record-line">2026-11-09 — Veil Nebula supernova remnant, JWST infrared</span>
+<span class="surfaced-flag" hidden>Surfaced</span>
+<img src="assets/wallpapers/wallpaper-2026-11-09.webp" width="1008" height="2240" alt="Delivered wallpaper 2026-11-09">
+</button>
+</li>
+<li>
+<button type="button" class="card" data-date="2026-11-08" data-src="assets/wallpapers/wallpaper-2026-11-08.webp" data-record-line="2026-11-08 — Tarantula Nebula (30 Doradus), JWST infrared" aria-pressed="false">
+
+<span class="record-line">2026-11-08 — Tarantula Nebula (30 Doradus), JWST infrared</span>
+<span class="surfaced-flag" hidden>Surfaced</span>
+<img src="assets/wallpapers/wallpaper-2026-11-08.webp" width="1008" height="2240" alt="Delivered wallpaper 2026-11-08">
+</button>
+</li>
+<li>
+<button type="button" class="card" data-date="2026-11-07" data-src="assets/wallpapers/wallpaper-2026-11-07.webp" data-record-line="2026-11-07 — Horsehead Nebula, JWST infrared" aria-pressed="false">
+
+<span class="record-line">2026-11-07 — Horsehead Nebula, JWST infrared</span>
+<span class="surfaced-flag" hidden>Surfaced</span>
+<img src="assets/wallpapers/wallpaper-2026-11-07.webp" width="1008" height="2128" alt="Delivered wallpaper 2026-11-07">
+</button>
+</li>
+<li>
+<button type="button" class="card" data-date="2026-11-06" data-src="assets/wallpapers/wallpaper-2026-11-06.webp" data-record-line="2026-11-06 — Carina Nebula cosmic cliffs, JWST infrared" aria-pressed="false">
+
+<span class="record-line">2026-11-06 — Carina Nebula cosmic cliffs, JWST infrared</span>
+<span class="surfaced-flag" hidden>Surfaced</span>
+<img src="assets/wallpapers/wallpaper-2026-11-06.webp" width="1008" height="2240" alt="Delivered wallpaper 2026-11-06">
+</button>
+</li>
+<li>
+<button type="button" class="card" data-date="2026-11-05" data-src="assets/wallpapers/wallpaper-2026-11-05.webp" data-record-line="2026-11-05 — JWST infrared deep field, lensed galaxy cluster" aria-pressed="false">
+
+<span class="record-line">2026-11-05 — JWST infrared deep field, lensed galaxy cluster</span>
+<span class="surfaced-flag" hidden>Surfaced</span>
+<img src="assets/wallpapers/wallpaper-2026-11-05.webp" width="1008" height="2240" alt="Delivered wallpaper 2026-11-05">
+</button>
+</li>
+</ol>
+</section>
+<section id="pick" aria-labelledby="pick-heading">
+<h2 id="pick-heading">Pick</h2>
+<p class="bound" id="bound">This wallpaper is surfaced for you to apply with one tap. This studio does not set it. Muse has no phone wallpaper/apply command. Zero-touch setting needs the phone-side automation that does not exist yet.</p>
+<p id="stage-empty">No wallpaper is surfaced yet. Tap a delivered wallpaper to surface its full image here.</p>
+<p class="surfaced-label" id="stage-label" hidden>Surfaced</p>
+<div id="stage-frame"></div>
+<p class="record-line" id="stage-caption" hidden></p>
+</section>
+<section id="rules" aria-labelledby="rules-heading">
+<h2 id="rules-heading">Rotation rules</h2>
+<pre id="rule-record" class="record">---
+id: daily-wallpaper
+title: Daily personalized phone wallpaper
+enabled: true
+owner: goal:daily-morning-briefing
+mode: task
+schedule:
+  kind: daily
+  timezone: '@user.current'
+  time: 04:45:00
+delivery:
+  - chat_id: 04639527-43be-4d43-9530-93dbc17b431a
+metadata:
+  originating_chat_context_json: '{"chat_id":"04639527-43be-4d43-9530-93dbc17b431a","origin_provider":"main","chat_kind":"direct","event_kind":"message","require_mention":false}'
+  presentation_locale: en-US
+---
+Generate Curtis's daily personalized phone wallpaper (standing request, Nov 4, 2026). He is bored of a static wallpaper and wants a unique one every day, ready by 5:00 AM Phoenix.
+
+1. Pick today's theme. Read ~/workspace/wallpapers/THEMES.md first (create it if missing) — never repeat a theme used in the last 14 days. Anchor taste: James Webb / deep-space imagery is his favorite (his desktop background style), so space is the default lane — nebulae, galaxies, star fields, JWST-style infrared deep fields. Rotate in variety so it never goes stale: Arizona desert night skies, ocean depths, mountain dawns, aurora, abstract cosmic art, and day-personalized subjects when they fit — a holiday today, the season, what he's playing (WoW Forever, MapleStory), Dodgers baseball, or something notable about his day from the calendar. Space should still win most days; variety is the spice, not the main course.
+2. Generate ONE image with the media pipeline: tall portrait phone format (9:19.5), ultra high resolution, no text or watermark, composed so the top and bottom edges stay dark/calm enough for the clock and icons to stay readable. Save it into ~/workspace/wallpapers/ with the file name wallpaper-YYYY-MM-DD (today's Phoenix date).
+3. Append one line to ~/workspace/wallpapers/THEMES.md: date + theme in a few words.
+4. Deliver to the main chat: the image attached on its own line (markdown image with its sandbox:// path), plus ONE short line saying what today's theme is. Keep it to that — the 5:00 AM briefing follows separately and carries the day's substance.
+</pre>
+</section>
+<section id="delivery-log" aria-labelledby="log-heading">
+<h2 id="log-heading">Delivery log</h2>
+<pre id="themes-record" class="record"># Daily wallpaper themes
+
+One line per day: date + theme. Do not repeat a theme used in the last 14 days.
+Note: 2026-11-04 night — a first JWST-style nebula (Pillars-like) image was generated for Nov 5 before this log existed; counted here so it is not repeated.
+2026-11-05 — JWST infrared deep field, lensed galaxy cluster
+2026-11-06 — Carina Nebula cosmic cliffs, JWST infrared
+2026-11-07 — Horsehead Nebula, JWST infrared
+2026-11-08 — Tarantula Nebula (30 Doradus), JWST infrared
+2026-11-09 — Veil Nebula supernova remnant, JWST infrared
+</pre>
+</section>
+</main>
+<footer>JWST Wallpaper Studio</footer>
+</div>
+<script>
+(function () {
+  var gallery = document.getElementById("gallery");
+  var frame = document.getElementById("stage-frame");
+  var caption = document.getElementById("stage-caption");
+  var empty = document.getElementById("stage-empty");
+  var label = document.getElementById("stage-label");
+  var pick = document.getElementById("pick");
+
+  gallery.addEventListener("click", function (event) {
+    var card = event.target.closest("button.card");
+    if (!card || !gallery.contains(card)) {
+      return;
+    }
+    var cards = gallery.querySelectorAll("button.card");
+    Array.prototype.forEach.call(cards, function (item) {
+      var on = item === card;
+      item.setAttribute("aria-pressed", on ? "true" : "false");
+      item.querySelector(".surfaced-flag").hidden = !on;
+    });
+    var img = card.querySelector("img").cloneNode(true);
+    img.className = "stage-img";
+    while (frame.firstChild) {
+      frame.removeChild(frame.firstChild);
+    }
+    frame.appendChild(img);
+    caption.textContent = card.getAttribute("data-record-line");
+    caption.hidden = false;
+    label.hidden = false;
+    empty.hidden = true;
+    pick.scrollIntoView({ block: "start" });
+  });
+})();
+</script>
+</body>
+</html>
